@@ -1,9 +1,9 @@
 CC		= g++
-CFLAGS	= -g
-FILE	= main.cpp
+CFLAGS	= -g -Wall
+FILE	= main.cpp player.cpp gameManager.cpp ship.cpp windowManager.cpp statusWindow.cpp inputkWindow.cpp defendWindow.cpp attackWindow.cpp
 EXE		= battleship
 
-battleship : main.cpp
+battleship : main.cpp player.cpp gameManager.cpp ship.cpp windowManager.cpp statusWindow.cpp inputkWindow.cpp defendWindow.cpp attackWindow.cpp main.h player.h gameManager.h ship.h windowManager.h statusWindow.h inputkWindow.h defendWindow.h attackWindow.h
 	$(CC) $(FILE) $(CFLAGS) -o $@ -lncurses
 
 test :
@@ -19,3 +19,9 @@ set-g++ :
 
 clean :
 	rm $(EXE)
+
+set-debug : 
+	sudo apt-get install valgrind
+
+debug :
+	valgrind ./battleship --tool=memcheck --leak-check=full --show-reachable=yes --log-file="./valgrind_log"

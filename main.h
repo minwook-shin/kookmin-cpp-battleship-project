@@ -1,0 +1,9 @@
+#include <ncurses.h>
+#include "windowManager.h"
+#include "gameManager.h"
+#include "player.h"
+#include "defendWindow.h"
+#include "attackWindow.h"
+#include "statusWindow.h"
+#include "inputkWindow.h"
+#include "ship.h"
