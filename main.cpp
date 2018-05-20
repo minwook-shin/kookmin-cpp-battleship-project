@@ -11,7 +11,7 @@ int main()
   defendWindow dw;
   attackWindow aw;
   statusWindow sw;
-  inputkWindow iw;
+  inputWindow iw;
   gm.drawMap(gm.t, aw.getWin(), iw.getWin());
   while (true)
   {

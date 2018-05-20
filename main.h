@@ -5,5 +5,5 @@
 #include "defendWindow.h"
 #include "attackWindow.h"
 #include "statusWindow.h"
-#include "inputkWindow.h"
+#include "inputWindow.h"
 #include "ship.h"

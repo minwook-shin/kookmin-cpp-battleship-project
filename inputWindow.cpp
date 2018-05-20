@@ -1,6 +1,6 @@
-#include "inputkWindow.h"
+#include "inputWindow.h"
 
-inputkWindow::inputkWindow(/* args */)
+inputWindow::inputWindow(/* args */)
 {
     inputWIn = newwin(10, 30, 12, 48);
     box(inputWIn, 0, 0);
@@ -11,11 +11,11 @@ inputkWindow::inputkWindow(/* args */)
     wmove(inputWIn, 2, 9);
     wrefresh(inputWIn);
 }
-inputkWindow::~inputkWindow()
+inputWindow::~inputWindow()
 {
     delwin(inputWIn);
 }
-WINDOW *inputkWindow::getWin()
+WINDOW *inputWindow::getWin()
 {
     return inputWIn;
 }

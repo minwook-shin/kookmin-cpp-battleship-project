@@ -1,13 +1,13 @@
 #include <ncurses.h>
 #include "windowManager.h"
 
-class inputkWindow
+class inputWindow
 {
 private:
   WINDOW *inputWIn;
 
 public:
-  inputkWindow();
-  ~inputkWindow();
+  inputWindow();
+  ~inputWindow();
   WINDOW *getWin();
 };
