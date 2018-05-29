@@ -13,7 +13,7 @@ int main()
   statusWindow sw;
   inputWindow iw;
   gm.drawMap(gm.t, aw.getWin(), iw.getWin());
-  while (true)
+  for(;;)
   {
     gm.updateDefendmap(dw.getWin(), iw.getWin());
     gm.updateAttackmap(aw.getWin(), gm.in, iw.getWin());

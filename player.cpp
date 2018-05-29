@@ -1,76 +1,94 @@
 #include <unistd.h>
+#include <string>
+#include <algorithm>
 #include "player.h"
 
 using namespace std;
 
-player::player(/* args */):aiInput(new char[2])
+player::player(/* args */) : aiInput(new char[2])
 {
   srand(time(0));
+  initAi();
 }
 player::~player() {}
 
-char* player::ai()
+void player::initAi()
 {
-  randomInputX = (1 + rand() % 8);
-  randomInputY = (1 + rand() % 8);
-  if(randomInputX == 1)
-  {
-    aiInput[0] = 'A';
-  }
-  if(randomInputX == 2)
-  {
-    aiInput[0] = 'B';
-  }
-  if(randomInputX == 3)
-  {
-    aiInput[0] = 'C';
-  }
-  if(randomInputX == 4)
-  {
-    aiInput[0] = 'D';
-  }
-  if(randomInputX == 5)
-  {
-    aiInput[0] = 'E';
-  }
-  if(randomInputX == 6)
-  {
-    aiInput[0] = 'F';
-  }
-  if(randomInputX == 7)
-  {
-    aiInput[0] = 'G';
-  }
-  if(randomInputX == 8)
-  {
-    aiInput[0] = 'H';
-  }
+  arr1.push_back("A1");
+  arr1.push_back("A2");
+  arr1.push_back("A3");
+  arr1.push_back("A4");
+  arr1.push_back("A5");
+  arr1.push_back("A6");
+  arr1.push_back("A7");
+  arr1.push_back("A8");
+  arr1.push_back("B1");
+  arr1.push_back("B2");
+  arr1.push_back("B3");
+  arr1.push_back("B4");
+  arr1.push_back("B5");
+  arr1.push_back("B6");
+  arr1.push_back("B7");
+  arr1.push_back("B8");
+  arr1.push_back("C1");
+  arr1.push_back("C2");
+  arr1.push_back("C3");
+  arr1.push_back("C4");
+  arr1.push_back("C5");
+  arr1.push_back("C6");
+  arr1.push_back("C7");
+  arr1.push_back("C8");
+  arr1.push_back("D1");
+  arr1.push_back("D2");
+  arr1.push_back("D3");
+  arr1.push_back("D4");
+  arr1.push_back("D5");
+  arr1.push_back("D6");
+  arr1.push_back("D7");
+  arr1.push_back("D8");
+  arr1.push_back("E1");
+  arr1.push_back("E2");
+  arr1.push_back("E3");
+  arr1.push_back("E4");
+  arr1.push_back("E5");
+  arr1.push_back("E6");
+  arr1.push_back("E7");
+  arr1.push_back("E8");
+  arr1.push_back("F1");
+  arr1.push_back("F2");
+  arr1.push_back("F3");
+  arr1.push_back("F4");
+  arr1.push_back("F5");
+  arr1.push_back("F6");
+  arr1.push_back("F7");
+  arr1.push_back("F8");
+  arr1.push_back("G1");
+  arr1.push_back("G2");
+  arr1.push_back("G3");
+  arr1.push_back("G4");
+  arr1.push_back("G5");
+  arr1.push_back("G6");
+  arr1.push_back("G7");
+  arr1.push_back("G8");
+  arr1.push_back("H1");
+  arr1.push_back("H2");
+  arr1.push_back("H3");
+  arr1.push_back("H4");
+  arr1.push_back("H5");
+  arr1.push_back("H6");
+  arr1.push_back("H7");
+  arr1.push_back("H8");
 
-  if (randomInputY == 1) {
-    aiInput[1] = '1';
-  }
-  if (randomInputY == 2) {
-    aiInput[1] = '2';
-  }
-  if (randomInputY == 3) {
-    aiInput[1] = '3';
-  }
-  if (randomInputY == 4) {
-    aiInput[1] = '4';
-  }
-  if (randomInputY == 5) {
-    aiInput[1] = '5';
-  }
-  if (randomInputY == 6) {
-    aiInput[1] = '6';
-  }
-  if (randomInputY == 7) {
-    aiInput[1] = '7';
-  }
-  if (randomInputY == 8) {
-    aiInput[1] = '8';
-  }
-  
+  random_shuffle(arr1.begin(), arr1.end());
+}
+
+char *player::ai()
+{
+  string t = arr1[0];
+  char * tmp = new char[t.length()+1];
+  strcpy(tmp,t.c_str());
+  aiInput = tmp;
+  arr1.erase(arr1.begin());
   return aiInput;
 }
 
@@ -147,5 +165,3 @@ void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(
     wmove(IW, 2, 9);
   }
 }
-
-
