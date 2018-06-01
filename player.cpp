@@ -1,11 +1,12 @@
 #include <unistd.h>
 #include <string>
 #include <algorithm>
+#include <iostream>
 #include "player.h"
 
 using namespace std;
 
-player::player(/* args */) : aiInput(new char[2])
+player::player(/* args */) : aiInput(new char[2]), intelliWord(new char[2])
 {
   srand(time(0));
   initAi();
@@ -82,21 +83,83 @@ void player::initAi()
   random_shuffle(arr1.begin(), arr1.end());
 }
 
-char *player::ai()
+char *player::ai(int **(&map))
 {
   string t = arr1[0];
-  char * tmp = new char[t.length()+1];
-  strcpy(tmp,t.c_str());
+  char *tmp = new char[t.length() + 1];
+  strcpy(tmp, t.c_str());
   aiInput = tmp;
   arr1.erase(arr1.begin());
+
+  int tmp2 = atoi(aiInput);
+
+  int x = tmp2 / 10;
+  int y = tmp2 % 10;
+
+  for (int i = 0; i < X; i++)
+  {
+    for (int j = 0; j < Y; j++)
+    {
+      if (map[x][y] != 0 && map[x][y] != 1&&map[x][y] != 7 &&map[x][y] != 8)
+      {
+        if (map[x - 1][y] != 1 || map[x + 1][y] != 1 || map[x][y + 1] != 1 || map[x][y - 1] != 1)
+        {
+          x--;
+          char eng = (char)x + 64;
+          intelliWord[0] = eng;
+          intelliWord[1] = '0' + y;
+          arr2.push_back(intelliWord);
+          x++;
+
+          x++;
+          eng = (char)x + 64;
+          intelliWord[0] = eng;
+          intelliWord[1] = '0' + y;
+          arr2.push_back(intelliWord);
+          x--;
+
+          y--;
+          eng = (char)x + 64;
+          intelliWord[0] = eng;
+          intelliWord[1] = '0' + y;
+          arr2.push_back(intelliWord);
+          y++;
+
+          y++;
+          eng = (char)x + 64;
+          intelliWord[0] = eng;
+          intelliWord[1] = '0' + y;
+          arr2.push_back(intelliWord);
+          y--;
+
+          while (arr2.empty())
+          {
+            
+            for(int k = 0; k < (int)arr1.size(); k++)
+            {
+              if(arr1[k] == arr2.front())
+              {
+                arr1.erase(arr1.begin()+k);
+                break;
+              }
+            }
+           
+            arr1.insert(arr1.begin(), arr2.front());
+            arr2.erase(arr2.begin());
+          }
+        }
+      }
+    }
+  }
+
   return aiInput;
 }
 
 void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(&input), int **(&t))
 {
   // wgetnstr(IW, in, 2);
-  in = ai();
-  sleep(1);
+  in = ai(t);
+  usleep(20000);
 
   if (toupper(in[0]) == 'A' || toupper(in[0]) == 'B' || toupper(in[0]) == 'C' || toupper(in[0]) == 'D' || toupper(in[0]) == 'E' || toupper(in[0]) == 'F' || toupper(in[0]) == 'G' || toupper(in[0]) == 'H')
   {
