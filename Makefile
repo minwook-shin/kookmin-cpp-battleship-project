@@ -3,8 +3,12 @@ CFLAGS    = -g -Wall
 FILE      = main.cpp player.cpp gameManager.cpp ship.cpp windowManager.cpp statusWindow.cpp inputWindow.cpp defendWindow.cpp attackWindow.cpp
 TARGET    = battleship
 
-battleship : main.cpp player.cpp gameManager.cpp ship.cpp windowManager.cpp statusWindow.cpp inputWindow.cpp defendWindow.cpp attackWindow.cpp main.h player.h gameManager.h ship.h windowManager.h statusWindow.h inputWindow.h defendWindow.h attackWindow.h
+battleship : calcTurn.cpp main.cpp player.cpp gameManager.cpp ship.cpp windowManager.cpp statusWindow.cpp inputWindow.cpp defendWindow.cpp attackWindow.cpp main.h player.h gameManager.h ship.h windowManager.h statusWindow.h inputWindow.h defendWindow.h attackWindow.h
 	$(CC) $(FILE) $(CFLAGS) -o $@ -lncurses
+	$(CC) calcTurn.cpp $(CFLAGS) -o calcTurnProgram
+
+run :
+	./start_game.sh
 	
 clean :
 	rm $(TARGET)
