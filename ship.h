@@ -31,6 +31,8 @@ public:
   ship(/* args */);
   ~ship();
 
+  void initShip();
+
   void setA();
   void setB();
   void setC();

@@ -15,6 +15,15 @@ ship::ship(/* args */)
 }
 ship::~ship() {}
 
+void ship::initShip()
+{
+  setA();
+  setB();
+  setC();
+  setD1();
+  setD2();
+}
+
 void ship::setA() { this->aHp = 5; }
 void ship::setB() { this->bHp = 4; }
 void ship::setC() { this->cHp = 3; }

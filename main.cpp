@@ -3,6 +3,7 @@
 using namespace std;
 int main()
 {
+  int t = -1;
   gameManager gm;
   windowManager wm;
   player a;
@@ -15,9 +16,10 @@ int main()
   gm.drawMap(gm.t, aw.getWin(), iw.getWin());
   for(;;)
   {
+    t++;
     gm.updateDefendmap(dw.getWin(), iw.getWin());
     gm.updateAttackmap(aw.getWin(), gm.in, iw.getWin());
-    gm.shipStatus(sw.getWin(), gm.getTurn());
+    gm.shipStatus(sw.getWin(), t);
     a.inputPlayer(dw.getWin(), aw.getWin(), sw.getWin(), iw.getWin(), gm.in, gm.t);
   }
   getch();

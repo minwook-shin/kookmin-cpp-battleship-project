@@ -1,3 +1,4 @@
+#pragma once
 #include "windowManager.h"
 
 class statusWindow

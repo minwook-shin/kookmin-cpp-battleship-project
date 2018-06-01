@@ -23,7 +23,7 @@ public:
   int getTurn();
   int **createMap();
   void drawMap(int **(&t), WINDOW *w, WINDOW *c);
-  void endGame();
+  void endGame(WINDOW* w,int i);
   void shipStatus(WINDOW *w, int i);
 
   void updateDefendmap(WINDOW *w, WINDOW *c);
