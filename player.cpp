@@ -165,7 +165,7 @@ char *player::ai(int **(&map))
   return aiInput;
 }
 
-void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(&input), int **(&t), int &turn)
+void player::inputPlayer(WINDOW *dw, WINDOW *aw, WINDOW *sw, WINDOW *iw, char *(&input), int **(&t), int &turn)
 {
   // wgetnstr(IW, in, 2);
   in = ai(t);
@@ -176,7 +176,7 @@ void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(
     if (in[1] == '1' || in[1] == '2' || in[1] == '3' || in[1] == '4' || in[1] == '5' || in[1] == '6' || in[1] == '7' || in[1] == '8')
     {
 
-      mvwprintw(SW, 7, 14, in);
+      mvwprintw(sw, 7, 14, in);
 
       if (in[0] == 'A' || in[0] == 'a')
       {
@@ -218,24 +218,24 @@ void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(
       }
 
       sprintf(turnStr, "%d", getTurn());
-      mvwprintw(SW, 2, 8, turnStr);
-      wrefresh(SW);
-      wmove(IW, 2, 9);
-      mvwprintw(IW, 2, 9, "  ");
-      wrefresh(IW);
+      mvwprintw(sw, 2, 8, turnStr);
+      wrefresh(sw);
+      wmove(iw, 2, 9);
+      mvwprintw(iw, 2, 9, "  ");
+      wrefresh(iw);
       input = in;
     }
     else
     {
-      mvwprintw(IW, 2, 9, "  ");
-      wrefresh(IW);
-      wmove(IW, 2, 9);
+      mvwprintw(iw, 2, 9, "  ");
+      wrefresh(iw);
+      wmove(iw, 2, 9);
     }
   }
   else
   {
-    mvwprintw(IW, 2, 9, "  ");
-    wrefresh(IW);
-    wmove(IW, 2, 9);
+    mvwprintw(iw, 2, 9, "  ");
+    wrefresh(iw);
+    wmove(iw, 2, 9);
   }
 }
