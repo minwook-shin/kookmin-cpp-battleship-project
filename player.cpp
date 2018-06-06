@@ -15,151 +15,161 @@ player::~player() {}
 
 void player::initAi()
 {
-  arr1.push_back("A1");
-  arr1.push_back("A2");
+  arr1.push_back("B2");
+  arr1.push_back("B4");
+  arr1.push_back("B6");
+  arr1.push_back("C5");
+  arr1.push_back("C7");
+  arr1.push_back("D2");
+  arr1.push_back("D4");
+  arr1.push_back("E3");
+  arr1.push_back("E5");
+  arr1.push_back("E7");
+  arr1.push_back("F2");
+  arr1.push_back("F6");
+  arr1.push_back("G3");
+  arr1.push_back("G5");
+  arr1.push_back("G7");
+  /*-------------------15*/
   arr1.push_back("A3");
-  arr1.push_back("A4");
-  arr1.push_back("A5");
-  arr1.push_back("A6");
   arr1.push_back("A7");
+  arr1.push_back("C1");
+  arr1.push_back("D8");
+  arr1.push_back("G1");
+  arr1.push_back("H4");
+  /*-------------------21*/
+  arr1.push_back("C3");
+  arr1.push_back("D6");
+  arr1.push_back("F4");
+  /*-------------------24*/
+  arr1.push_back("A1");
+  arr1.push_back("A5");
+  arr1.push_back("B8");
+  arr1.push_back("E1");
+  arr1.push_back("F8");
+  arr1.push_back("H2");
+  arr1.push_back("H6");
+  arr1.push_back("H8");
+  /*-------------------32*/
+  arr1.push_back("A2");
+  arr1.push_back("A4");
+  arr1.push_back("A6");
   arr1.push_back("A8");
   arr1.push_back("B1");
-  arr1.push_back("B2");
   arr1.push_back("B3");
-  arr1.push_back("B4");
   arr1.push_back("B5");
-  arr1.push_back("B6");
   arr1.push_back("B7");
-  arr1.push_back("B8");
-  arr1.push_back("C1");
   arr1.push_back("C2");
-  arr1.push_back("C3");
   arr1.push_back("C4");
-  arr1.push_back("C5");
   arr1.push_back("C6");
-  arr1.push_back("C7");
   arr1.push_back("C8");
   arr1.push_back("D1");
-  arr1.push_back("D2");
   arr1.push_back("D3");
-  arr1.push_back("D4");
   arr1.push_back("D5");
-  arr1.push_back("D6");
   arr1.push_back("D7");
-  arr1.push_back("D8");
-  arr1.push_back("E1");
   arr1.push_back("E2");
-  arr1.push_back("E3");
   arr1.push_back("E4");
-  arr1.push_back("E5");
   arr1.push_back("E6");
-  arr1.push_back("E7");
   arr1.push_back("E8");
   arr1.push_back("F1");
-  arr1.push_back("F2");
   arr1.push_back("F3");
-  arr1.push_back("F4");
   arr1.push_back("F5");
-  arr1.push_back("F6");
   arr1.push_back("F7");
-  arr1.push_back("F8");
-  arr1.push_back("G1");
   arr1.push_back("G2");
-  arr1.push_back("G3");
   arr1.push_back("G4");
-  arr1.push_back("G5");
   arr1.push_back("G6");
-  arr1.push_back("G7");
   arr1.push_back("G8");
   arr1.push_back("H1");
-  arr1.push_back("H2");
   arr1.push_back("H3");
-  arr1.push_back("H4");
   arr1.push_back("H5");
-  arr1.push_back("H6");
   arr1.push_back("H7");
-  arr1.push_back("H8");
-
-  random_shuffle(arr1.begin(), arr1.end());
+  srand(time(0));
+  random_shuffle(arr1.begin(), arr1.begin() + 15);
+  srand(time(0));
+  random_shuffle(arr1.begin() + 16, arr1.begin() + 21);
+  srand(time(0));
+  random_shuffle(arr1.begin() + 22, arr1.begin() + 24);
+  srand(time(0));
+  random_shuffle(arr1.begin() + 25, arr1.begin() + 32);
+  srand(time(0));
+  random_shuffle(arr1.begin() + 33, arr1.end());
 }
 
 char *player::ai(int **(&map))
 {
-  string t = arr1[0];
-  char *tmp = new char[t.length() + 1];
-  strcpy(tmp, t.c_str());
-  aiInput = tmp;
-  arr1.erase(arr1.begin());
-
-  int tmp2 = atoi(aiInput);
-
-  int x = tmp2 / 10;
-  int y = tmp2 % 10;
-
-  for (int i = 0; i < X; i++)
+  if (arr2.empty())
   {
-    for (int j = 0; j < Y; j++)
+    string t = arr1[0];
+    strcpy(aiInput, t.c_str());
+    arr1.erase(arr1.begin());
+
+    int tmp1 = t[0] - 64;
+    int tmp2 = t[1] - 48;
+
+    if (map[tmp1][t[1] - 48] == 2 || map[tmp1][t[1] - 48] == 3 || map[tmp1][t[1] - 48] == 4 || map[tmp1][t[1] - 48] == 5 || map[tmp1][t[1] - 48] == 6)
     {
-      if (map[x][y] != 0 && map[x][y] != 1&&map[x][y] != 7 &&map[x][y] != 8)
-      {
-        if (map[x - 1][y] != 1 || map[x + 1][y] != 1 || map[x][y + 1] != 1 || map[x][y - 1] != 1)
-        {
-          x--;
-          char eng = (char)x + 64;
-          intelliWord[0] = eng;
-          intelliWord[1] = '0' + y;
-          arr2.push_back(intelliWord);
-          x++;
+      string tmpWord1(2, '0');
+      tmpWord1[0] = (char)tmp1 + 64;
+      tmpWord1[1] = (char)tmp2 + 49;
+      
+      string tmpWord2(2, '0');
+      tmpWord2[0] = (char)tmp1 + 64;
+      tmpWord2[1] = (char)tmp2 + 47;
+      
+      string tmpWord3(2, '0');
+      tmpWord3[0] = (char)tmp1 + 65;
+      tmpWord3[1] = (char)tmp2 + 48;
+      
+      string tmpWord4(2, '0');
+      tmpWord4[0] = (char)tmp1 + 63;
+      tmpWord4[1] = (char)tmp2 + 48;
+      arr2.insert(arr2.begin(), tmpWord1);
+      
+      arr2.insert(arr2.begin(), tmpWord3);
 
-          x++;
-          eng = (char)x + 64;
-          intelliWord[0] = eng;
-          intelliWord[1] = '0' + y;
-          arr2.push_back(intelliWord);
-          x--;
+      arr2.insert(arr2.begin(), tmpWord2);
+      
+      arr2.insert(arr2.begin(), tmpWord4);
+    }
+  }
 
-          y--;
-          eng = (char)x + 64;
-          intelliWord[0] = eng;
-          intelliWord[1] = '0' + y;
-          arr2.push_back(intelliWord);
-          y++;
+  else if (!arr2.empty())
+  {
+    string t2 = arr2[0];
+    strcpy(aiInput, t2.c_str());
+    arr2.erase(arr2.begin());
+    int tmp1 = t2[0] - 64;
+    int tmp2 = t2[1] - 48;
 
-          y++;
-          eng = (char)x + 64;
-          intelliWord[0] = eng;
-          intelliWord[1] = '0' + y;
-          arr2.push_back(intelliWord);
-          y--;
-
-          while (arr2.empty())
-          {
-            
-            for(int k = 0; k < (int)arr1.size(); k++)
-            {
-              if(arr1[k] == arr2.front())
-              {
-                arr1.erase(arr1.begin()+k);
-                break;
-              }
-            }
-           
-            arr1.insert(arr1.begin(), arr2.front());
-            arr2.erase(arr2.begin());
-          }
-        }
-      }
+    if (map[tmp1][t2[1] - 48] == 2 || map[tmp1][t2[1] - 48] == 3 || map[tmp1][t2[1] - 48] == 4 || map[tmp1][t2[1] - 48] == 5 || map[tmp1][t2[1] - 48] == 6)
+    {
+      string tmpWord1(2, '0');
+      tmpWord1[0] = (char)tmp1 + 64;
+      tmpWord1[1] = (char)tmp2 + 47;
+      arr2.insert(arr2.begin(), tmpWord1);
+      string tmpWord2(2, '0');
+      tmpWord2[0] = (char)tmp1 + 64;
+      tmpWord2[1] = (char)tmp2 + 49;
+      arr2.insert(arr2.begin(), tmpWord2);
+      string tmpWord3(2, '0');
+      tmpWord3[0] = (char)tmp1 + 63;
+      tmpWord3[1] = (char)tmp2 + 48;
+      arr2.insert(arr2.begin(), tmpWord3);
+      string tmpWord4(2, '0');
+      tmpWord4[0] = (char)tmp1 + 65;
+      tmpWord4[1] = (char)tmp2 + 48;
+      arr2.insert(arr2.begin(), tmpWord4);
     }
   }
 
   return aiInput;
 }
 
-void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(&input), int **(&t))
+void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(&input), int **(&t), int &turn)
 {
   // wgetnstr(IW, in, 2);
   in = ai(t);
-  usleep(20000);
+  usleep(10000);
 
   if (toupper(in[0]) == 'A' || toupper(in[0]) == 'B' || toupper(in[0]) == 'C' || toupper(in[0]) == 'D' || toupper(in[0]) == 'E' || toupper(in[0]) == 'F' || toupper(in[0]) == 'G' || toupper(in[0]) == 'H')
   {
@@ -204,6 +214,7 @@ void player::inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(
       if (t[tmp / 10][tmp % 10] != 7 && t[tmp / 10][tmp % 10] != 8)
       {
         addTurn();
+        turn++;
       }
 
       sprintf(turnStr, "%d", getTurn());

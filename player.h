@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <cctype>
 #include <string>
+#include <queue>
 #include "gameManager.h"
 
 class player : public gameManager
@@ -14,7 +15,7 @@ private:
 public:
   player();
   ~player();
-  void inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(&input), int **(&t));
+  void inputPlayer(WINDOW *DW, WINDOW *AW, WINDOW *SW, WINDOW *IW, char *(&input), int **(&t),int &turn);
   char* ai(int **(&map));
   void initAi();
 };

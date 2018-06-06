@@ -30,7 +30,7 @@ private:
 public:
   ship(/* args */);
   ~ship();
-
+  bool isHit;
   void initShip();
 
   void setA();

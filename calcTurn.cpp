@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < 10; i++)
     {
-        cout << i+1 << ":"<< v[i]<<" ";
+        cout << i+1 << "->"<< v[i]<<" ";
         total += v[i];
     }
     cout << endl;
